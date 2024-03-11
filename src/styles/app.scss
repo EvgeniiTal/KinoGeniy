@@ -1,0 +1,16 @@
+@import 'bootstrap/scss/bootstrap';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Euclid Circular A", Poppins;
+  color: #f9f9f9;
+  background: #1e1b1f;
+}

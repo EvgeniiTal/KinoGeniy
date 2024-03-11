@@ -1,7 +1,7 @@
 export function Hello () {
   return (
     <>
-    <h1>Hello World</h1>
+    <h1 className="mt-5 text-center">Hello World</h1>
     </>
   )
 

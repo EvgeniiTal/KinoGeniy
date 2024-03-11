@@ -1,10 +1,10 @@
-import { Hello } from './Hello'
+import { Layout } from "./Layout"
 
 function App() {
 
   return (
     <>
-    <Hello/>
+      <Layout />
     </>
 
   )
