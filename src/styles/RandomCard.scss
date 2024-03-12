@@ -1,7 +1,65 @@
 .random-film {
-  background: url(https://img.freepik.com/free-photo/fresh-yellow-daisy-single-flower-close-up-beauty-generated-by-ai_188544-15543.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1710115200&semt=ais);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100%
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  user-select: none;
+}
+
+.random-film__title {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  color: #f9f9f9;
+}
+
+.random-film__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.random-film__info__top {
+  display: flex;
+  justify-content: сenter;
+  align-items: center;
+  width: 100%;
+}
+
+.random-film__info__top p {
+  margin: 10px;
+  padding: 0;
+  color: #f9f9f9;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

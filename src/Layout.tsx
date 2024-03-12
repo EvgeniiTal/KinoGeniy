@@ -1,12 +1,11 @@
 import { Header } from './components/Header'
-import { Hello } from './Hello'
-import { RandomCard } from './components/RandomCard'
+import { Main } from './components/Main'
 
-export function Layout () {
+export function Layout (props) {
   return (
     <>
       <Header />
-      <RandomCard />
+      <Main>{props.children}</Main>
     </>
   )
 }
