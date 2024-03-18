@@ -1,15 +1,14 @@
-import { Layout } from "../../Layout";
 import { Carousels } from "../Carousels";
-import { RandomCard } from "../RandomCard";
+import { RandomMovie } from "../RandomMovie";
 
 export function MainPage () {
   return (
-    <Layout>
-      <RandomCard />
-      <Carousels />
-      <Carousels />
-      <Carousels />
-      <Carousels />
-    </Layout>
+    <>
+      <RandomMovie />
+      <Carousels typeNumber={1} title={'Фильмы'} />
+      <Carousels typeNumber={2} title={'Сериалы'}/>
+      <Carousels typeNumber={3} title={'Мультфильмы'}/>
+      <Carousels typeNumber={4} title={'Аниме'} />
+    </>
   )
 }

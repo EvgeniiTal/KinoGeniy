@@ -1,9 +1,10 @@
-import '../styles/RandomCard.scss'
+import '../styles/RandomMovie.scss'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRandomMovie } from '../redux/randomMovie-slice'
+import Loader from '../styles/Loader.module.css'
 
-export function RandomCard () {
+export function RandomMovie () {
   const dispatch = useDispatch()
   const { data, status, error } = useSelector((state: any) => state.randomMovie)
 
@@ -17,7 +18,7 @@ export function RandomCard () {
     if (status === 'loading') {
       return (
         <div className="container d-flex justify-content-center mt-5">
-          <div className={'loader'} role="status">
+          <div className={Loader.loader} role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>

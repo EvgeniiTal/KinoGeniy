@@ -1,5 +1,6 @@
 import '../styles/BurgerMenu.scss'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 
  export function BurgerMenu () {
@@ -19,7 +20,7 @@ import { useState } from 'react'
       <div className={`menu ${isOpen}`}>
         <nav>
           <ul>
-            <li className= {isMenuOpen ? 'appear' : ''}>Главная</li>
+            <li className= {isMenuOpen ? 'appear' : ''}>Главная</ li>
             <li className= {isMenuOpen ? 'appear' : ''}>Фильмы</li>
             <li className= {isMenuOpen ? 'appear' : ''}>Сериалы</li>
             <li className= {isMenuOpen ? 'appear' : ''}>Мультфильмы</li>

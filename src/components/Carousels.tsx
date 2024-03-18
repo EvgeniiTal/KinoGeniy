@@ -1,23 +1,39 @@
 import Flickity from 'react-flickity-component';
 import '../styles/Carousels.scss';
-import Naruto1 from '../assets/gratis-png-sasuke-uchiha-naruto-uzumaki-gaara-itachi-uchiha-hinata-hyuga-naruto.png'
-import Naruto2 from '../assets/png-clipart-render-naruto-uzumaki-naruti.png'
-import Naruto3 from '../assets/png-transparent-naruto-uzumaki-rock-lee-orochimaru-naruto-fictional-character-pain-weapon.png'
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMovieList } from '../redux/MovieList-slice';
+import { Card } from './Card';
 
-const flickityOptions = {
-  initialIndex: 2,
-}
 
-const images = {
-  id: [1, 2, 3],
-  title: ['title 1', 'title 2', 'title 3'],
-  url: [Naruto1, Naruto2, Naruto3],
-}
 
-export function Carousels () {
+export function Carousels (props: any) {
+  const dispatch = useDispatch()
+  const { movieList, status } = useSelector((state: any) => state.movieList)
+
+  useEffect(() => {
+    if (status === 'resolved') return
+    dispatch(fetchMovieList(props.typeNumber) as any)
+  }, [dispatch])
+
+  const dataForRender = []
+
+
+  const flickityOptions = {
+    initialIndex: 0,
+  }
+
+  const images = {
+    id: [1, 2, 3],
+    title: ['', '', ''],
+    url: dataForRender
+  }
+
+
+
   return (
-    <>
-      <h1>Flickity</h1>
+    <div className="container mt-5">
+      <h1>{ props.title }</h1>
       <Flickity
         className='mt-5 mb-5 flickity'
         elementType='div'
@@ -29,10 +45,15 @@ export function Carousels () {
         {
           images['id'].map((id) => {
             return (
-              <div key={id}>
+              <div key={id} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
                 <>
-                  <h2>{images['title'][id - 1]}</h2>
-                  <img src={images['url'][id - 1]} alt={images['title'][id - 1]} />
+                  { images['url'].map((url, index) => {
+                    return (
+                      <div key={index + 1}>
+                        <Card status={status} data={url} />
+                      </div>
+                    )
+                  }) }
                 </>
               </div>
             )
@@ -40,6 +61,6 @@ export function Carousels () {
           )
         }
       </Flickity>
-    </>
+    </div>
   );
 }
