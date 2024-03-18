@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchRandomMovie } from '../redux/randomMovie-slice'
 import Loader from '../styles/Loader.module.css'
 
-export function RandomMovie () {
+export function RandomMovie (): JSX.Element {
   const dispatch = useDispatch()
-  const { data, status, error } = useSelector((state: any) => state.randomMovie)
+  const { data, status } = useSelector((state: any) => state.randomMovie)
 
   useEffect(() => {
     if (status === 'resolved') return
@@ -14,7 +14,7 @@ export function RandomMovie () {
   }, [dispatch])
 
 
-  function renderData (data: any) {
+  function renderData (data: any): JSX.Element {
     if (status === 'loading') {
       return (
         <div className="container d-flex justify-content-center mt-5">
@@ -46,6 +46,7 @@ export function RandomMovie () {
         </>
       )
     }
+    return <></>
   }
 
   return renderData(data)

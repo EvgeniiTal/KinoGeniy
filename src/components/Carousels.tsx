@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieList } from '../redux/MovieList-slice';
 import { Card } from './Card';
 
+interface Props {
+  title: string,
+  typeNumber: number
+}
 
-
-export function Carousels (props: any) {
+export function Carousels (props: Props): JSX.Element {
   const dispatch = useDispatch()
   const { movieList, status } = useSelector((state: any) => state.movieList)
 
@@ -16,7 +19,7 @@ export function Carousels (props: any) {
     dispatch(fetchMovieList(props.typeNumber) as any)
   }, [dispatch])
 
-  const dataForRender = []
+  const dataForRender: any[] = []
 
 
   const flickityOptions = {

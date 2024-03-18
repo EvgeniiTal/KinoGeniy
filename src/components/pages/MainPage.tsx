@@ -1,7 +1,7 @@
 import { Carousels } from "../Carousels";
 import { RandomMovie } from "../RandomMovie";
 
-export function MainPage () {
+export function MainPage (): JSX.Element {
   return (
     <>
       <RandomMovie />

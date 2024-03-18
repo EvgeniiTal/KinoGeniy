@@ -3,7 +3,7 @@ import { router } from './route'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
-function App() {
+function App(): JSX.Element {
 
   return (
     <>

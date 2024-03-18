@@ -1,9 +1,14 @@
 import '../styles/Card.scss'
 import Loader from '../styles/Loader.module.css'
 
-export function Card (props) {
+interface Props {
+  status: string,
+  data: any
+}
 
-function renderData (data) {
+export function Card (props: Props): JSX.Element {
+
+function renderData (data: any): JSX.Element {
   if (props.status === 'loading') {
     return (
       <div className={'card'}>
@@ -28,6 +33,7 @@ function renderData (data) {
       </div>
     )
   }
+  return <></>
 }
 
 

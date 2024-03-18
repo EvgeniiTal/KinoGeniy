@@ -1,6 +1,6 @@
 import { BurgerMenu } from "./BurgerMenu"
 
-export function Header () {
+export function Header (): JSX.Element {
   return (
     <nav className="navbar navbar-light">
       <div className="container-fluid d-flex justify-content-between">

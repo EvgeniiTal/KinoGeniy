@@ -1,15 +1,23 @@
 import '../styles/BurgerMenu.scss'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
- export function BurgerMenu () {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+ export function BurgerMenu (): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const navigate = useNavigate()
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen)
     console.log('click')
   }
+
+  const handleLinkClick = (link: string): void => {
+    setIsMenuOpen(false)
+    navigate(link)
+  }
+
+
 
   const isOpen = isMenuOpen ? 'open' : ''
 
@@ -20,11 +28,11 @@ import { NavLink } from 'react-router-dom'
       <div className={`menu ${isOpen}`}>
         <nav>
           <ul>
-            <li className= {isMenuOpen ? 'appear' : ''}>Главная</ li>
-            <li className= {isMenuOpen ? 'appear' : ''}>Фильмы</li>
-            <li className= {isMenuOpen ? 'appear' : ''}>Сериалы</li>
-            <li className= {isMenuOpen ? 'appear' : ''}>Мультфильмы</li>
-            <li className= {isMenuOpen ? 'appear' : ''}>Аниме</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/main')}>Главная</ li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/films')}>Фильмы</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/serials')}>Сериалы</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/cartoons')}>Мультфильмы</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/animes')}>Аниме</li>
           </ul>
         </nav>
       </div>
