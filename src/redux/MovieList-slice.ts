@@ -1,12 +1,37 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { requestMovieList } from '../services/MovieList'
 
+interface initialState {
+  data: any
+  status: any
+  error: any,
+  limit: number,
+  pagesCounter: number
+}
+
+const initialState: initialState = {
+  data: null,
+  status: null,
+  error: null,
+  limit: 12,
+  pagesCounter: 0
+}
+
+interface Opts {
+  typeNumber: number
+  page?: number | string
+}
+
+
 export const fetchMovieList = createAsyncThunk(
   'movieList/fetchMovieListStatus',
-  async (opts: any = {}, thunkAPI) => {
+  async (opts: Opts, thunkAPI: any) => {
     try {
-      const { typeNumber } = opts
-      const data = await requestMovieList({ typeNumber })
+      console.log(thunkAPI)
+      const { typeNumber, page = 1 }= opts
+      const { limit } = thunkAPI.getState().movieList
+
+      const data = await requestMovieList({ typeNumber, limit, page })
       return data
     } catch (e: any) {
       return thunkAPI.rejectWithValue(e.message)
@@ -16,11 +41,7 @@ export const fetchMovieList = createAsyncThunk(
 
 export const movieListSlice = createSlice({
   name: 'movieList',
-  initialState: {
-    movieList: null,
-    status: null,
-    error: null
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -30,7 +51,8 @@ export const movieListSlice = createSlice({
       })
       .addCase(fetchMovieList.fulfilled, (state: any, action) => {
         state.status = 'resolved'
-        state.movieList = action.payload
+        state.data = action.payload
+        state.pagesCounter = action.payload.pages
       })
       .addCase(fetchMovieList.rejected, (state: any, action) => {
         state.status = 'rejected'

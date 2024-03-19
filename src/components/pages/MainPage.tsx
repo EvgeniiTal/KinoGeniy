@@ -1,14 +1,17 @@
-import { Carousels } from "../Carousels";
+import { CarouselsMovies } from "../CarouselsMovies";
+import { CarouselsSeries } from "../CarouselsSeries";
+import { CarouselsCartoon } from "../CarouselsCartoon"
+import { CarouselsAnime } from "../CarouselsAnime";
 import { RandomMovie } from "../RandomMovie";
 
 export function MainPage (): JSX.Element {
   return (
     <>
       <RandomMovie />
-      <Carousels typeNumber={1} title={'Фильмы'} />
-      <Carousels typeNumber={2} title={'Сериалы'}/>
-      <Carousels typeNumber={3} title={'Мультфильмы'}/>
-      <Carousels typeNumber={4} title={'Аниме'} />
+      <CarouselsMovies title={'Фильмы'} />
+      <CarouselsSeries title={'Сериалы'} />
+      <CarouselsCartoon title={'Мультфильмы'} />
+      <CarouselsAnime title={'Аниме'} />
     </>
   )
 }

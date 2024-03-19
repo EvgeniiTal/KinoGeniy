@@ -6,7 +6,7 @@ import Loader from '../styles/Loader.module.css'
 
 export function RandomMovie (): JSX.Element {
   const dispatch = useDispatch()
-  const { data, status } = useSelector((state: any) => state.randomMovie)
+  const { data, status, error } = useSelector((state: any) => state.randomMovie)
 
   useEffect(() => {
     if (status === 'resolved') return
@@ -44,6 +44,12 @@ export function RandomMovie (): JSX.Element {
             </div>
           </div>
         </>
+      )
+    } else if (status === 'rejected') {
+      return (
+        <div className="container d-flex justify-content-center mt-5">
+          <h1 className="text-danger">{error}</h1>
+        </div>
       )
     }
     return <></>
