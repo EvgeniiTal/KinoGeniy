@@ -5,7 +5,8 @@ export const fetchRandomMovie = createAsyncThunk(
   'randomMovie/fetchRandomMovieStatus',
   async (_, thunkAPI) => {
     try {
-      const data = await requestRandomMovie()
+      const notNullFields: string = 'name'
+      const data = await requestRandomMovie( { notNullFields: notNullFields } )
       return data
     } catch (e: any) {
       return thunkAPI.rejectWithValue(e.message)

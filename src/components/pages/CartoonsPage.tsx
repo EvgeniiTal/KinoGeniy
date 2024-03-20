@@ -3,23 +3,23 @@ import { Card } from "../Card"
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { fetchSerialsList } from '../../redux/SerialsList-slice';
+import { fetchCartoonList } from '../../redux/CartoonList-slice';
 import { Pagination } from "../Pagination";
 import { SortSelect } from "../SortSelect";
 import Loader from '../../styles/Loader.module.css'
 
-export function SerialsPage (): JSX.Element {
+export function CartoonsPage (): JSX.Element {
   const dispatch = useDispatch()
-  const { data, status, error, pagesCounter } = useSelector((state: any) => state.serialsList)
+  const { data, status, error, pagesCounter } = useSelector((state: any) => state.cartoonList)
   const { page } = useParams()
 
   useEffect(() => {
     if (status === 'resolved') return
-    dispatch(fetchSerialsList({typeNumber: 2, page: page}) as any)
+    dispatch(fetchCartoonList({typeNumber: 3, page: page}) as any)
   }, [dispatch])
 
   function handleClick(pageNumber: number): void {
-    dispatch(fetchSerialsList({typeNumber: 2, page: pageNumber}) as any)
+    dispatch(fetchCartoonList({typeNumber: 3, page: pageNumber}) as any)
   }
 
   function renderData (data: any): JSX.Element {
@@ -27,21 +27,21 @@ export function SerialsPage (): JSX.Element {
     if (status === 'loading') {
       return (
         <>
-          <Title title="Фильмы"/>
-          <SortSelect fetch={fetchSerialsList} typeNumber={2}/>
-            <div className="container mt-5">
-              <div className={Loader.loader} role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+          <Title title="Мультфильмы"/>
+          <SortSelect fetch={fetchCartoonList} typeNumber={3}/>
+          <div className="container mt-5">
+            <div className={Loader.loader} role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
+          </div>
         </>
 
       )
     } else if(status === 'resolved') {
         return (
           <>
-            <Title title="Сериалы"/>
-            <SortSelect fetch={fetchSerialsList} typeNumber={2}/>
+            <Title title="Мультфильмы"/>
+            <SortSelect fetch={fetchCartoonList} typeNumber={3}/>
             <div className="container mt-5 mb-5">
               <div className="row row-cols-1 row-cols-md-3 g-4">
                 {data.docs.map((item: object, index: number) => {
@@ -56,7 +56,7 @@ export function SerialsPage (): JSX.Element {
                 <Pagination
                   onClick={handleClick}
                   pagesCounter={pagesCounter}
-                  section="tv-series"
+                  section="cartoons"
                 />
               </ul>
             </div>

@@ -30,9 +30,9 @@ import { useNavigate } from 'react-router-dom'
           <ul>
             <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/main')}>Главная</ li>
             <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/films/1')}>Фильмы</li>
-            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/serials')}>Сериалы</li>
-            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/cartoons')}>Мультфильмы</li>
-            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/animes')}>Аниме</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/tv-series/1')}>Сериалы</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/cartoons/1')}>Мультфильмы</li>
+            <li className= {isMenuOpen ? 'appear' : ''} onClick={() => handleLinkClick('/animes/1')}>Аниме</li>
           </ul>
         </nav>
       </div>

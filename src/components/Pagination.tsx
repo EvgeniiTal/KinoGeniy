@@ -1,13 +1,14 @@
 import { useParams, NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux'
 
 interface Props {
-  onClick(pageNumber: number): void
+  onClick(pageNumber: number): void,
+  pagesCounter: number
+  section: string
 }
 
 export function Pagination(props: Props): JSX.Element {
   const { page } = useParams()
-  const { pagesCounter } = useSelector((state: any) => state.movieList)
+  const pagesCounter= props.pagesCounter
 
   function buildPaginationScheme (): any {
     const prevPageNumber: number = Number(page) - 1
@@ -38,7 +39,7 @@ export function Pagination(props: Props): JSX.Element {
 
       return (
         <li className="page-item" key={index}>
-          <NavLink className="page-link" to={`/films/${pageNumber}`} onClick={() => props.onClick(pageNumber)}>{pageNumber}</NavLink>
+          <NavLink className="page-link" to={`/${props.section}/${pageNumber}`} onClick={() => props.onClick(pageNumber)}>{pageNumber}</NavLink>
         </li>
       )
     })

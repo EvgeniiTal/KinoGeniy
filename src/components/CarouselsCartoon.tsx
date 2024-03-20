@@ -2,6 +2,7 @@ import Flickity from 'react-flickity-component';
 import '../styles/Carousels.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { fetchCartoonList } from '../redux/CartoonList-slice';
 import { Card } from './Card';
 import Loader from '../styles/Loader.module.css';
@@ -17,7 +18,7 @@ export function CarouselsCartoon (props: Props): JSX.Element {
 
   useEffect(() => {
     if (status === 'resolved') return
-    dispatch(fetchCartoonList(3) as any)
+    dispatch(fetchCartoonList({ typeNumber: 3, page: 1 }) as any)
   }, [dispatch])
 
 
@@ -38,7 +39,7 @@ export function CarouselsCartoon (props: Props): JSX.Element {
 
       return (
         <div className="container mt-5">
-          <h1>{ props.title }</h1>
+          <NavLink to={'/cartoons/1'} className="text-white text-decoration-none fs-1">{ props.title }</NavLink>
           <Flickity
             className='mt-5 mb-5 flickity'
             elementType='div'
@@ -48,11 +49,11 @@ export function CarouselsCartoon (props: Props): JSX.Element {
             static
           >
             {
-              data.docs.map((item: any, index: number) => {
+              data?.docs.map((item: any, index: number) => {
                 return (
                   <div key={index} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
                     <>
-                     <Card status={status} data={item} />
+                     <Card status={status} data={item} section={'cartoon'} />
                     </>
                   </div>
                 )

@@ -3,7 +3,8 @@ import Loader from '../styles/Loader.module.css'
 
 interface Props {
   status: string,
-  data: any
+  data: any,
+  section: string
 }
 
 export function Card (props: Props): JSX.Element {
@@ -28,7 +29,7 @@ function renderData (data: any): JSX.Element {
         <div className={'content'}>
           <h2>{data.name === null ? data.alternativeName : data.name}</h2>
           <p>{data.description === null ? 'К сожалению, описание отсутствует' : data.description}</p>
-          <a href="#">Подробнее</a>
+          <a href={`/${props.section}/${data.id}`}>Подробнее</a>
         </div>
       </div>
     )
