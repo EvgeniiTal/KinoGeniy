@@ -5,7 +5,7 @@ import { fetchRandomMovie } from '../redux/randomMovie-slice'
 import { NavLink } from 'react-router-dom'
 import Loader from '../styles/Loader.module.css'
 
-export function RandomMovie (): JSX.Element {
+export function RandomMovie (): JSX.Element | null {
   const dispatch = useDispatch()
   const { data, status, error } = useSelector((state: any) => state.randomMovie)
 
@@ -14,8 +14,7 @@ export function RandomMovie (): JSX.Element {
     dispatch(fetchRandomMovie() as any)
   }, [dispatch])
 
-
-  function renderData (data: any): JSX.Element {
+  function renderData (data: any): JSX.Element | null {
     if (status === 'loading') {
       return (
         <div className="container d-flex justify-content-center mt-5">
@@ -52,7 +51,8 @@ export function RandomMovie (): JSX.Element {
         </div>
       )
     }
-    return <></>
+
+    return null
   }
 
   return renderData(data)

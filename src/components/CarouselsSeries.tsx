@@ -1,28 +1,25 @@
-import Flickity from 'react-flickity-component';
-import '../styles/Carousels.scss';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { fetchSerialsList } from '../redux/SerialsList-slice';
-import { Card } from './Card';
-import Loader from '../styles/Loader.module.css';
+import Flickity from 'react-flickity-component'
+import '../styles/Carousels.scss'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { fetchSerialsList } from '../redux/SerialsList-slice'
+import { Card } from './Card'
+import Loader from '../styles/Loader.module.css'
 
 interface Props {
   title: string,
 }
 
-export function CarouselsSeries (props: Props): JSX.Element {
+export function CarouselsSeries (props: Props): JSX.Element | null {
   const dispatch = useDispatch()
   const { data, status, error } = useSelector((state: any) => state.serialsList)
 
   useEffect(() => {
-    if (status === 'resolved') return
     dispatch(fetchSerialsList({ typeNumber: 2 }) as any)
   }, [dispatch])
 
-
-
-  function renderData (data: any): JSX.Element {
+  function renderData (data: any): JSX.Element | null {
     if (status === 'loading') {
       return (
         <div className="container mt-5">
@@ -70,6 +67,8 @@ export function CarouselsSeries (props: Props): JSX.Element {
         </div>
       )
     }
+
+    return null
   }
 
   return renderData(data)

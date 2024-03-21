@@ -1,6 +1,6 @@
-import { AnimePostBody } from '../AnimePostBody';
+import { AnimePostBody } from '../AnimePostBody'
 
-export function AnimePage () {
+export function AnimePage (): JSX.Element {
 
   return (
     <>

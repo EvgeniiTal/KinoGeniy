@@ -1,5 +1,5 @@
-import { BurgerMenu } from "./BurgerMenu"
-import { NavLink } from "react-router-dom"
+import { BurgerMenu } from './BurgerMenu'
+import { NavLink } from 'react-router-dom'
 
 export function Header (): JSX.Element {
   return (

@@ -5,7 +5,7 @@ interface InitialState {
   data: null | object,
   anime: null | object,
   status: null | string,
-  error: null | string,
+  error: null | string | unknown,
   limit: number,
   pagesCounter: number
 }
@@ -58,28 +58,28 @@ export const animeListSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnimeList.pending, (state: any) => {
+      .addCase(fetchAnimeList.pending, (state: InitialState) => {
         state.status = 'loading'
         state.error = null
       })
-      .addCase(fetchAnimeList.fulfilled, (state: any, action) => {
+      .addCase(fetchAnimeList.fulfilled, (state: InitialState, action) => {
         state.status = 'resolved'
         state.data = action.payload
         state.pagesCounter = action.payload.pages
       })
-      .addCase(fetchAnimeList.rejected, (state: any, action) => {
+      .addCase(fetchAnimeList.rejected, (state: InitialState, action) => {
         state.status = 'rejected'
         state.error = action.payload
       })
-      .addCase(fetchAnime.pending, (state: any) => {
+      .addCase(fetchAnime.pending, (state: InitialState) => {
         state.status = 'loading'
         state.error = null
       })
-      .addCase(fetchAnime.fulfilled, (state: any, action) => {
+      .addCase(fetchAnime.fulfilled, (state: InitialState, action) => {
         state.status = 'resolved'
         state.anime = action.payload
       })
-      .addCase(fetchAnime.rejected, (state: any, action) => {
+      .addCase(fetchAnime.rejected, (state: InitialState, action) => {
         state.status = 'rejected'
         state.error = action.payload
       })

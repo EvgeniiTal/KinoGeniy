@@ -1,4 +1,4 @@
-import { MoviePostBody } from '../MoviePostBody';
+import { MoviePostBody } from '../MoviePostBody'
 
 export function FilmPage (): JSX.Element {
 

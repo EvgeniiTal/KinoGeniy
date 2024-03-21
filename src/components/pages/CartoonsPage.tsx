@@ -1,20 +1,19 @@
-import { Title } from "../Title"
-import { Card } from "../Card"
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
-import { fetchCartoonList } from '../../redux/CartoonList-slice';
-import { Pagination } from "../Pagination";
-import { SortSelect } from "../SortSelect";
+import { Title } from '../Title'
+import { Card } from '../Card'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { fetchCartoonList } from '../../redux/CartoonList-slice'
+import { Pagination } from '../Pagination'
+import { SortSelect } from '../SortSelect'
 import Loader from '../../styles/Loader.module.css'
 
-export function CartoonsPage (): JSX.Element {
+export function CartoonsPage (): JSX.Element | null {
   const dispatch = useDispatch()
   const { data, status, error, pagesCounter } = useSelector((state: any) => state.cartoonList)
   const { page } = useParams()
 
   useEffect(() => {
-    if (status === 'resolved') return
     dispatch(fetchCartoonList({typeNumber: 3, page: page}) as any)
   }, [dispatch])
 
@@ -22,7 +21,7 @@ export function CartoonsPage (): JSX.Element {
     dispatch(fetchCartoonList({typeNumber: 3, page: pageNumber}) as any)
   }
 
-  function renderData (data: any): JSX.Element {
+  function renderData (data: any): JSX.Element | null {
 
     if (status === 'loading') {
       return (
@@ -47,7 +46,7 @@ export function CartoonsPage (): JSX.Element {
                 {data.docs.map((item: object, index: number) => {
                   return (
                     <div className="col" key={index}>
-                      <Card status={status} data={item}/>
+                      <Card status={status} data={item} section="cartoon"/>
                     </div>
                   )
                 })}
@@ -68,7 +67,7 @@ export function CartoonsPage (): JSX.Element {
         </div>
       }
 
-    return <></>
+    return null
   }
 
   return renderData(data)

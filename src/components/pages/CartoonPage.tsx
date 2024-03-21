@@ -1,6 +1,6 @@
-import { CartoonPostBody } from '../CartoonPostBody';
+import { CartoonPostBody } from '../CartoonPostBody'
 
-export function CartoonPage () {
+export function CartoonPage (): JSX.Element {
 
   return (
     <>

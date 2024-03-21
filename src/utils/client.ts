@@ -5,4 +5,4 @@ export const client: any = axios.create({
   timeout: 10000
 })
 
-client.defaults.headers.common['X-API-KEY'] = 'TRGT0GM-8YMMRKQ-G3ZZHNA-4R75QBG'
+client.defaults.headers.common['X-API-KEY'] = 'YK7XEQE-VC3MYX0-HQDDP2F-2Y5ZAJC'

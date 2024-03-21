@@ -1,28 +1,27 @@
-import { Title } from "../Title"
-import { Card } from "../Card"
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router-dom";
-import { fetchAnimeList } from '../../redux/AnimeList-slice';
-import { Pagination } from "../Pagination";
-import { SortSelect } from "../SortSelect";
+import { Title } from '../Title'
+import { Card } from '../Card'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { fetchAnimeList } from '../../redux/AnimeListSlice'
+import { Pagination } from '../Pagination'
+import { SortSelect } from '../SortSelect'
 import Loader from '../../styles/Loader.module.css'
 
-export function AnimesPage (): JSX.Element {
+export function AnimesPage (): JSX.Element | null {
   const dispatch = useDispatch()
   const { data, status, error, pagesCounter } = useSelector((state: any) => state.animeList)
   const { page } = useParams()
 
   useEffect(() => {
-    if (status === 'resolved') return
     dispatch(fetchAnimeList({typeNumber: 4, page: page}) as any)
-  }, [dispatch])
+  }, [dispatch, status, page])
 
   function handleClick(pageNumber: number): void {
     dispatch(fetchAnimeList({typeNumber: 4, page: pageNumber}) as any)
   }
 
-  function renderData (data: any): JSX.Element {
+  function renderData (data: any): JSX.Element | null {
 
     if (status === 'loading') {
       return (
@@ -46,7 +45,7 @@ export function AnimesPage (): JSX.Element {
                 {data.docs.map((item: object, index: number) => {
                   return (
                     <div className="col" key={index}>
-                      <Card status={status} data={item}/>
+                      <Card status={status} data={item} section="anime"/>
                     </div>
                   )
                 })}
@@ -55,7 +54,7 @@ export function AnimesPage (): JSX.Element {
                 <Pagination
                   onClick={handleClick}
                   pagesCounter={pagesCounter}
-                  section="anime"
+                  section="animes"
                 />
               </ul>
             </div>
@@ -67,7 +66,7 @@ export function AnimesPage (): JSX.Element {
         </div>
       }
 
-    return <></>
+    return null
   }
 
   return renderData(data)

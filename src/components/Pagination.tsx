@@ -1,4 +1,4 @@
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink } from 'react-router-dom'
 
 interface Props {
   onClick(pageNumber: number): void,

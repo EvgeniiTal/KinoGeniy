@@ -1,4 +1,4 @@
-import { SerialPostBody } from '../SerialPostBody';
+import { SerialPostBody } from '../SerialPostBody'
 
 export function SerialPage (): JSX.Element {
 
